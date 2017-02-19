@@ -1,3 +1,5 @@
 const Display = require('./lib/Display');
 
-const display = new Display();
+module.exports = {
+    Display
+};

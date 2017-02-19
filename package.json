@@ -1,6 +1,6 @@
 {
   "name": "epaper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for display content on a Waveshare 4.3 inch e-Paper screen",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "prepublish": "npm run build"
   },
   "author": "Eric Erickson <steamedcotton@gmail.com>",
+  "repository": "https://github.com/steamedcotton/epaper",
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.4.7",

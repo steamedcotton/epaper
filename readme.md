@@ -16,9 +16,9 @@ npm install epaper
 Assuming you have the e-paper displayed connected to `/dev/cu.usbserial`:
 
 ```javascript
-var Display = require('./src/lib/Display');
+var Display = require('epaper').Display;
 var display = new Display('/dev/cu.usbserial', true);
-
+ 
 display.handshake()
     .then(() => display.setColor(Display.BLACK, Display.WHITE))
     .then(display.clear)
