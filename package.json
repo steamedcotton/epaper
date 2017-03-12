@@ -1,6 +1,6 @@
 {
   "name": "epaper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Library for display content on a Waveshare 4.3 inch e-Paper screen",
   "main": "index.js",
   "scripts": {
