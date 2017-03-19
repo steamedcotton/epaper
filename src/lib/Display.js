@@ -32,13 +32,15 @@ class Display {
         this.clear = this.clear.bind(this);
         this.update = this.update.bind(this);
         this.setFont = this.setFont.bind(this);
-        this.setFont = this.setFont.bind(this);
-        this.drawFilledCircle = this.drawFilledCircle.bind(this);
-        this.drawCircle = this.drawCircle.bind(this);
         this.displayString = this.displayString.bind(this);
+        this.drawCircle = this.drawCircle.bind(this);
+        this.drawPixel = this.drawPixel.bind(this);
+        this.drawFilledCircle = this.drawFilledCircle.bind(this);
         this.drawFilledRect = this.drawFilledRect.bind(this);
         this.drawRect = this.drawRect.bind(this);
         this.drawLine = this.drawLine.bind(this);
+        this.drawTriangle = this.drawTriangle.bind(this);
+        this.drawFillTriangle = this.drawFillTriangle.bind(this);
     }
 
     static getParityByte(data) {
@@ -212,8 +214,7 @@ class Display {
             frames.FRAME_E3
         ];
 
-        return this.sendSync(cmdDrawCircle)
-            .then(this.checkOK);
+        return this.sendSync(cmdDrawCircle, true);
     }
 
     drawCircle(x0, y0, r) {
@@ -239,8 +240,7 @@ class Display {
             frames.FRAME_E3
         ];
 
-        return this.sendSync(cmdDrawCircle)
-            .then(this.checkOK);
+        return this.sendSync(cmdDrawCircle, true);
     }
 
     drawFilledRect(x0, y0, x1, y1) {
@@ -269,8 +269,7 @@ class Display {
             frames.FRAME_E3
         ];
 
-        return this.sendSync(cmd)
-            .then(this.checkOK);
+        return this.sendSync(cmd, true);
     }
 
     drawRect(x0, y0, x1, y1) {
@@ -299,8 +298,77 @@ class Display {
             frames.FRAME_E3
         ];
 
-        return this.sendSync(cmd)
-            .then(this.checkOK);
+        return this.sendSync(cmd, true);
+    }
+
+    drawTriangle(x0, y0, x1, y1, x2, y2) {
+        let cmd = [
+            frames.FRAME_B,
+            0x00,
+            0x15,
+
+            cmds.CMD_DRAW_TRIANGLE,
+
+            (x0 >> 8) & 0xFF,
+            x0 & 0xFF,
+
+            (y0 >> 8) & 0xFF,
+            y0 & 0xFF,
+
+            (x1 >> 8) & 0xFF,
+            x1 & 0xFF,
+
+            (y1 >> 8) & 0xFF,
+            y1 & 0xFF,
+
+            (x2 >> 8) & 0xFF,
+            x2 & 0xFF,
+
+            (y2 >> 8) & 0xFF,
+            y2 & 0xFF,
+
+            frames.FRAME_E0,
+            frames.FRAME_E1,
+            frames.FRAME_E2,
+            frames.FRAME_E3
+        ];
+
+        return this.sendSync(cmd, true);
+    }
+
+    drawFillTriangle(x0, y0, x1, y1, x2, y2) {
+        let cmd = [
+            frames.FRAME_B,
+            0x00,
+            0x15,
+
+            cmds.CMD_FILL_TRIANGLE,
+
+            (x0 >> 8) & 0xFF,
+            x0 & 0xFF,
+
+            (y0 >> 8) & 0xFF,
+            y0 & 0xFF,
+
+            (x1 >> 8) & 0xFF,
+            x1 & 0xFF,
+
+            (y1 >> 8) & 0xFF,
+            y1 & 0xFF,
+
+            (x2 >> 8) & 0xFF,
+            x2 & 0xFF,
+
+            (y2 >> 8) & 0xFF,
+            y2 & 0xFF,
+
+            frames.FRAME_E0,
+            frames.FRAME_E1,
+            frames.FRAME_E2,
+            frames.FRAME_E3
+        ];
+
+        return this.sendSync(cmd, true);
     }
 
     drawLine(x0, y0, x1, y1) {
@@ -329,8 +397,7 @@ class Display {
             frames.FRAME_E3
         ];
 
-        return this.sendSync(cmd)
-            .then(this.checkOK);
+        return this.sendSync(cmd, true);
     }
 
     drawPixel(x0, y0) {
@@ -353,31 +420,7 @@ class Display {
             frames.FRAME_E3
         ];
 
-        return this.sendSync(cmd)
-            .then(this.checkOK);
-    }
-
-    drawPixelQuick(x0, y0) {
-        let cmd = [
-            frames.FRAME_B,
-            0x00,
-            0x0D,
-
-            cmds.CMD_DRAW_PIXEL,
-
-            (x0 >> 8) & 0xFF,
-            x0 & 0xFF,
-
-            (y0 >> 8) & 0xFF,
-            y0 & 0xFF,
-
-            frames.FRAME_E0,
-            frames.FRAME_E1,
-            frames.FRAME_E2,
-            frames.FRAME_E3
-        ];
-
-        return this.sendSync(cmd, true);
+        return this.sendSync(cmd, this.checkOK);
     }
 
     displayString(str, x, y) {

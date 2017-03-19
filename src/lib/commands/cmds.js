@@ -4,7 +4,7 @@ module.exports = {
     CMD_HANDSHAKE: 0x00,        //handshake
     CMD_SET_BAUD: 0x01,         //set baud
     CMD_READ_BAUD: 0x02,        //read baud
-    CMD_MEMORYMODE: 0x07,       //set memory mode
+    CMD_MEMORYMODE: 0x07,       //set the storage area
     CMD_STOPMODE: 0x08,         //enter stop mode
     CMD_UPDATE: 0x0A,           //update
     CMD_SCREEN_ROTATION: 0x0D,  //set screen rotation

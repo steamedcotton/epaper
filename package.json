@@ -1,6 +1,6 @@
 {
   "name": "epaper",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Library for display content on a Waveshare 4.3 inch e-Paper screen",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.4.7",
-    "bmp-js": "0.0.3",
     "lodash": "^4.17.4",
     "serialport": "^4.0.7"
   },
